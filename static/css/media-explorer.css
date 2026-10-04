@@ -1,0 +1,222 @@
+.media-container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+    padding: 50px 0 80px;
+}
+
+.media-container .page-header {
+    margin-bottom: 40px;
+}
+
+.media-container .page-header > p:last-of-type {
+    max-width: 700px;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.dashboard-file {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 6px 10px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.media-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 58px;
+}
+
+.media-stat-card {
+    min-height: 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.media-stat-card:hover {
+    transform: translateY(-3px);
+    background: var(--surface-light);
+    border-color: var(--border-light);
+}
+
+.media-stat-card span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.media-stat-card strong {
+    color: var(--text);
+    font-size: 27px;
+}
+
+.media-section {
+    margin-bottom: 58px;
+}
+
+.participant-media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.media-participant-card {
+    padding: 23px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.media-participant-card:hover {
+    transform: translateY(-3px);
+    background: var(--surface-light);
+    border-color: var(--border-light);
+}
+
+.media-participant-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.media-avatar {
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: var(--accent);
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.media-participant-header h3 {
+    color: var(--text);
+    font-size: 17px;
+}
+
+.media-participant-header span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.media-count {
+    margin-top: 22px;
+    color: var(--text);
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.media-progress-track {
+    height: 8px;
+    margin-top: 15px;
+    overflow: hidden;
+    background: var(--surface-light);
+    border-radius: 999px;
+}
+
+.media-progress {
+    height: 100%;
+    min-width: 2px;
+    background: var(--accent);
+    border-radius: inherit;
+}
+
+.media-results {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.media-result {
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.media-result:hover {
+    transform: translateY(-2px);
+    background: var(--surface-light);
+    border-color: var(--border-light);
+}
+
+.media-result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 11px;
+}
+
+.media-result-header strong {
+    color: var(--text);
+    font-size: 15px;
+}
+
+.media-result-header span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.media-badge {
+    display: inline-flex;
+    margin-bottom: 11px;
+    padding: 4px 9px;
+    color: var(--accent-light);
+    background: var(--accent-soft);
+    border: 1px solid rgba(139, 108, 255, .18);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .6px;
+}
+
+.media-message {
+    color: var(--text-soft);
+    font-size: 14px;
+}
+
+@media (max-width: 750px) {
+
+    .media-stats-grid,
+    .participant-media-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .media-result-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .media-container {
+        width: 92%;
+        padding-top: 40px;
+    }
+
+    .media-stat-card,
+    .media-participant-card,
+    .media-result {
+        padding: 18px;
+    }
+}

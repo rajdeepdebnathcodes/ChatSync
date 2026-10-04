@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Media Explorer | ChatSync</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/common.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/media-explorer.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        ChatSync
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/media-explorer">
+            Media Explorer
+        </a>
+
+        <a href="/search">
+            Search
+        </a>
+
+        <a href="/upload">
+            New Analysis
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="media-container">
+
+
+    <header class="page-header">
+
+        <p class="eyebrow">
+            MEDIA ANALYSIS
+        </p>
+
+        <h1>
+            Media Explorer
+        </h1>
+
+        <p>
+            Explore media messages shared throughout the conversation
+            and compare media activity between participants.
+        </p>
+
+        <span class="dashboard-file">
+            {{ filename }}
+        </span>
+
+    </header>
+
+
+    <section class="media-stats-grid">
+
+
+        <div class="media-stat-card">
+
+            <span>
+                Total Media
+            </span>
+
+            <strong>
+                {{ "{:,}".format(media_stats.total_media) }}
+            </strong>
+
+        </div>
+
+
+        <div class="media-stat-card">
+
+            <span>
+                Media Percentage
+            </span>
+
+            <strong>
+                {{ "%.1f"|format(media_stats.media_percentage) }}%
+            </strong>
+
+        </div>
+
+
+        <div class="media-stat-card">
+
+            <span>
+                Participants Sharing Media
+            </span>
+
+            <strong>
+                {{ media_stats.media_by_participant|length }}
+            </strong>
+
+        </div>
+
+
+    </section>
+
+
+    <section class="media-section">
+
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                PARTICIPANT ACTIVITY
+            </p>
+
+            <h2>
+                Media Shared by Participant
+            </h2>
+
+            <p>
+                Compare how frequently each participant shared media.
+            </p>
+
+        </div>
+
+
+        <div class="participant-media-grid">
+
+
+            {% for participant, count in media_stats.media_by_participant.items() %}
+
+            <article class="media-participant-card">
+
+
+                <div class="media-participant-header">
+
+                    <div class="media-avatar">
+                        {{ participant[0]|upper }}
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ participant }}
+                        </h3>
+
+                        <span>
+                            Media messages
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="media-count">
+                    {{ "{:,}".format(count) }}
+                </div>
+
+
+                <div class="media-progress-track">
+
+                    <div
+                        class="media-progress"
+                        style="width: {% if media_stats.max_media_count > 0 %}{{ (count / media_stats.max_media_count * 100)|round(1) }}{% else %}0{% endif %}%"
+                    ></div>
+
+                </div>
+
+
+            </article>
+
+
+            {% else %}
+
+
+            <div class="empty-state">
+
+                <h3>
+                    No media found
+                </h3>
+
+                <p>
+                    This conversation does not contain media messages.
+                </p>
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </section>
+
+
+    <section class="media-section">
+
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                MEDIA RECORDS
+            </p>
+
+            <h2>
+                Shared Media
+            </h2>
+
+            <p>
+                Showing up to 500 media messages from the conversation.
+            </p>
+
+        </div>
+
+
+        <div class="media-results">
+
+
+            {% for media in media_messages %}
+
+
+            <article class="media-result">
+
+
+                <div class="media-result-header">
+
+                    <strong>
+                        {{ media.sender }}
+                    </strong>
+
+                    <span>
+                        {{ media.date.strftime("%d %b %Y") }}
+                        ·
+                        {{ media.time }}
+                    </span>
+
+                </div>
+
+
+                <span class="media-badge">
+                    MEDIA
+                </span>
+
+
+                <p class="media-message">
+                    {{ media.message }}
+                </p>
+
+
+            </article>
+
+
+            {% else %}
+
+
+            <div class="empty-state">
+
+                <h3>
+                    No media messages found
+                </h3>
+
+                <p>
+                    No media records are available in this conversation.
+                </p>
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+</body>
+
+</html>

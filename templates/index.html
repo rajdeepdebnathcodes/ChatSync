@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ChatSync - WhatsApp Analytics</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/common.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+
+<body class="home-page">
+
+    <nav class="navbar">
+        <div class="logo">ChatSync</div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/upload">New Analysis</a>
+            <a href="/about">About</a>
+        </div>
+    </nav>
+
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    WhatsApp Conversation Analytics
+                </div>
+
+                <h1 class="hero-title">
+                    Understand your conversations.
+                </h1>
+
+                <p class="hero-description">
+                    ChatSync transforms your exported WhatsApp conversations
+                    into meaningful analytics, visualizations, searchable
+                    messages, emoji insights, links, media and more.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="/upload" class="primary-button">
+                        Analyze a Chat
+                    </a>
+
+                    <a href="/about" class="secondary-button">
+                        Explore ChatSync
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANALYTICS PREVIEW -->
+
+            <div class="analytics-preview">
+
+                <div class="analytics-top">
+
+                    <span class="analytics-label">
+                        Live Analytics Preview
+                    </span>
+
+                    <span class="analytics-status">
+                        ● Analysis Ready
+                    </span>
+
+                </div>
+
+                <div class="analytics-main-number">
+                    78,787
+                </div>
+
+                <div class="analytics-subtitle">
+                    Messages analyzed
+                </div>
+
+
+                <div class="analytics-bars">
+
+                    <div class="analytics-bar" style="height: 42%;"></div>
+                    <div class="analytics-bar" style="height: 58%;"></div>
+                    <div class="analytics-bar" style="height: 45%;"></div>
+                    <div class="analytics-bar" style="height: 72%;"></div>
+                    <div class="analytics-bar" style="height: 55%;"></div>
+                    <div class="analytics-bar" style="height: 86%;"></div>
+                    <div class="analytics-bar" style="height: 66%;"></div>
+                    <div class="analytics-bar" style="height: 92%;"></div>
+                    <div class="analytics-bar" style="height: 74%;"></div>
+                    <div class="analytics-bar" style="height: 100%;"></div>
+                    <div class="analytics-bar" style="height: 82%;"></div>
+                    <div class="analytics-bar" style="height: 64%;"></div>
+
+                </div>
+
+
+                <div class="analytics-footer">
+
+                    <div class="analytics-stat">
+                        <span>Participants</span>
+                        <strong>4</strong>
+                    </div>
+
+                    <div class="analytics-stat">
+                        <span>Words</span>
+                        <strong>318K</strong>
+                    </div>
+
+                    <div class="analytics-stat">
+                        <span>Links</span>
+                        <strong>640</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    WHAT CHATSYNC DOES
+                </p>
+
+                <h2>
+                    Explore your conversations from every angle.
+                </h2>
+
+            </div>
+
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">▦</div>
+
+                    <h3>
+                        Conversation Analytics
+                    </h3>
+
+                    <p>
+                        Discover message counts, participants, activity
+                        patterns, word usage and conversation statistics.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">⌕</div>
+
+                    <h3>
+                        Message Search
+                    </h3>
+
+                    <p>
+                        Search through messages using keywords,
+                        participants and date-based filters.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">☺</div>
+
+                    <h3>
+                        Emoji Explorer
+                    </h3>
+
+                    <p>
+                        Find the most frequently used emojis and explore
+                        how participants use them.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">↗</div>
+
+                    <h3>
+                        Link Explorer
+                    </h3>
+
+                    <p>
+                        Analyze shared links and discover the domains
+                        appearing throughout the conversation.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">▣</div>
+
+                    <h3>
+                        Media Explorer
+                    </h3>
+
+                    <p>
+                        Explore media messages and understand how media
+                        is shared throughout the chat.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">Aa</div>
+
+                    <h3>
+                        Text Analysis
+                    </h3>
+
+                    <p>
+                        Analyze words, message lengths and frequently
+                        used terms across the conversation.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Emoji Explorer | ChatSync</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/common.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/emoji-explorer.css') }}"
+    >
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        ChatSync
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/emoji-explorer">
+            Emoji Explorer
+        </a>
+
+        <a href="/search">
+            Search
+        </a>
+
+        <a href="/upload">
+            New Analysis
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="emoji-container">
+
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+        <p class="eyebrow">
+            EMOJI ANALYSIS
+        </p>
+
+        <h1>
+            Emoji Explorer
+        </h1>
+
+        <p>
+            Discover the emojis that define your conversation and
+            compare emoji usage between participants.
+        </p>
+
+        <span class="dashboard-file">
+            {{ filename }}
+        </span>
+
+    </header>
+
+
+    <!-- STATS -->
+
+    <section class="emoji-stats-grid">
+
+        <div class="emoji-stat-card">
+
+            <span>
+                Total Emoji Uses
+            </span>
+
+            <strong>
+                {{ "{:,}".format(total_emojis) }}
+            </strong>
+
+        </div>
+
+
+        <div class="emoji-stat-card">
+
+            <span>
+                Unique Emojis
+            </span>
+
+            <strong>
+                {{ top_emojis|length }}
+            </strong>
+
+        </div>
+
+
+        <div class="emoji-stat-card">
+
+            <span>
+                Top Emoji
+            </span>
+
+            <strong class="top-emoji">
+
+                {% if top_emojis %}
+                    {{ top_emojis[0][0] }}
+                {% else %}
+                    —
+                {% endif %}
+
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOP EMOJIS -->
+
+    <section class="emoji-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                TOP EMOJIS
+            </p>
+
+            <h2>
+                Most Used Emojis
+            </h2>
+
+            <p>
+                A visual ranking of the most frequently used emojis.
+            </p>
+
+        </div>
+
+
+        <div class="emoji-chart-card">
+
+            {% if top_emojis %}
+
+                {% set max_count = top_emojis[0][1] %}
+
+                <div class="emoji-chart">
+
+                    {% for emoji, count in top_emojis %}
+
+                    <div class="emoji-row">
+
+                        <span class="emoji-symbol">
+                            {{ emoji }}
+                        </span>
+
+                        <div class="emoji-bar-track">
+
+                            <div
+                                class="emoji-bar"
+                                style="width: {{ (count / max_count * 100) | round(1) }}%;"
+                            ></div>
+
+                        </div>
+
+                        <span class="emoji-count">
+                            {{ "{:,}".format(count) }}
+                        </span>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+                    <h3>No emojis found</h3>
+                    <p>This conversation does not contain emoji data.</p>
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- PARTICIPANT COMPARISON -->
+
+    <section class="emoji-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                PARTICIPANT COMPARISON
+            </p>
+
+            <h2>
+                Emoji Usage by Participant
+            </h2>
+
+            <p>
+                See which emojis are most popular with each participant.
+            </p>
+
+        </div>
+
+
+        <div class="participant-grid">
+
+            {% for participant, emojis in emoji_by_participant.items() %}
+
+            <article class="participant-card">
+
+                <div class="participant-card-header">
+
+                    <div class="avatar">
+                        {{ participant[0]|upper }}
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ participant }}
+                        </h3>
+
+                        <span>
+                            Top emojis
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                {% if emojis %}
+
+                <div class="emoji-mini-list">
+
+                    {% for emoji, count in emojis %}
+
+                    <div class="emoji-mini-row">
+
+                        <span class="emoji-symbol">
+                            {{ emoji }}
+                        </span>
+
+                        <span>
+                            {{ "{:,}".format(count) }}
+                        </span>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+                {% else %}
+
+                <div class="participant-empty">
+                    No emojis used.
+                </div>
+
+                {% endif %}
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

@@ -1,0 +1,231 @@
+/* =========================================================
+   ChatSync - Upload Page
+   ========================================================= */
+
+.upload-page {
+    min-height: calc(100vh - 72px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-container {
+    width: min(760px, 90%);
+    margin: 0 auto;
+    padding: 70px 0;
+}
+
+.upload-header {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.upload-header h1 {
+    margin-bottom: 12px;
+
+    color: var(--text);
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+.upload-header p {
+    max-width: 580px;
+    margin: 0 auto;
+
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+
+/* UPLOAD CARD */
+
+.upload-card {
+    padding: 34px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow);
+}
+
+.file-drop-area {
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background: var(--surface-light);
+
+    border: 1px dashed var(--border-light);
+    border-radius: var(--radius-lg);
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.file-drop-area:hover {
+    background: var(--surface-hover);
+    border-color: var(--accent);
+}
+
+.upload-icon {
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    color: var(--accent-light);
+    background: var(--accent-soft);
+
+    border-radius: 18px;
+
+    font-size: 28px;
+}
+
+.file-drop-area h2 {
+    margin-bottom: 8px;
+
+    color: var(--text);
+    font-size: 20px;
+}
+
+.file-drop-area p {
+    margin-bottom: 20px;
+
+    color: var(--muted);
+    font-size: 14px;
+}
+
+
+/* FILE INPUT */
+
+.file-input {
+    display: none;
+}
+
+.file-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 0 18px;
+
+    color: var(--text);
+    background: var(--surface);
+
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.file-label:hover {
+    background: var(--surface-hover);
+    border-color: var(--accent);
+}
+
+
+/* SELECTED FILE */
+
+.selected-file {
+    display: none;
+
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px 16px;
+
+    color: var(--text-soft);
+    background: var(--accent-soft);
+
+    border: 1px solid rgba(139, 108, 255, 0.2);
+    border-radius: var(--radius-sm);
+
+    font-size: 13px;
+    text-align: left;
+    word-break: break-word;
+}
+
+
+/* UPLOAD BUTTON */
+
+.upload-button {
+    width: 100%;
+    min-height: 50px;
+
+    margin-top: 20px;
+
+    color: white;
+    background: var(--accent);
+
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.upload-button:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+
+/* INFO */
+
+.upload-info {
+    margin-top: 20px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .upload-container {
+        width: 92%;
+        padding: 45px 0;
+    }
+
+    .upload-card {
+        padding: 18px;
+    }
+
+    .file-drop-area {
+        min-height: 260px;
+        padding: 25px 18px;
+    }
+}

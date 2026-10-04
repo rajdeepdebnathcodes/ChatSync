@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ChatSync - Activity</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/common.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/activity.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        ChatSync
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/upload">
+            New Analysis
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="page-container">
+
+
+    <header class="page-header">
+
+        <p class="eyebrow">
+            ACTIVITY ANALYSIS
+        </p>
+
+        <h1>
+            Conversation Activity
+        </h1>
+
+        <p>
+            Discover when the conversation is most active.
+        </p>
+
+    </header>
+
+
+    <section class="highlight-grid activity-section">
+
+
+        <div class="highlight-card card">
+
+            <span class="highlight-label">
+                Busiest Weekday
+            </span>
+
+            <strong class="highlight-value">
+                {{ busiest_day }}
+            </strong>
+
+            <span class="highlight-count">
+                {{ "{:,}".format(busiest_day_count) }} messages
+            </span>
+
+        </div>
+
+
+        <div class="highlight-card card">
+
+            <span class="highlight-label">
+                Busiest Hour
+            </span>
+
+            <strong class="highlight-value">
+                {{ busiest_hour }}
+            </strong>
+
+            <span class="highlight-count">
+                {{ "{:,}".format(busiest_hour_count) }} messages
+            </span>
+
+        </div>
+
+
+        <div class="highlight-card card">
+
+            <span class="highlight-label">
+                Busiest Date
+            </span>
+
+            <strong class="highlight-value">
+                {{ busiest_date }}
+            </strong>
+
+            <span class="highlight-count">
+                {{ "{:,}".format(busiest_date_count) }} messages
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+    <section class="activity-grid activity-section">
+
+
+        <div class="activity-card card">
+
+            <h3>
+                Messages by Day
+            </h3>
+
+            <p class="activity-description">
+                Distribution of messages across the days of the week.
+            </p>
+
+            <img
+                src="{{ url_for('charts', filename='messages_by_day.png') }}"
+                alt="Messages by day"
+            >
+
+        </div>
+
+
+        <div class="activity-card card">
+
+            <h3>
+                Messages by Hour
+            </h3>
+
+            <p class="activity-description">
+                Distribution of messages across the 24-hour day.
+            </p>
+
+            <img
+                src="{{ url_for('charts', filename='messages_by_hour.png') }}"
+                alt="Messages by hour"
+            >
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+</body>
+
+</html>

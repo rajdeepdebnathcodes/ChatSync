@@ -1,0 +1,292 @@
+.about-container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+    padding: 50px 0 80px;
+}
+
+.about-header {
+    max-width: 850px;
+    margin-bottom: 60px;
+}
+
+.about-header > p:last-child {
+    max-width: 720px;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* Introduction */
+
+.about-intro {
+    display: grid;
+    grid-template-columns: 1.5fr .8fr;
+    gap: 20px;
+    margin-bottom: 75px;
+}
+
+.about-intro-content {
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.about-intro-content h2 {
+    margin-bottom: 18px;
+    color: var(--text);
+    font-size: 30px;
+    line-height: 1.2;
+}
+
+.about-intro-content p:not(.eyebrow) {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.about-highlight {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px;
+    background:
+        linear-gradient(
+            145deg,
+            var(--surface-light),
+            var(--surface)
+        );
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.about-highlight span {
+    color: var(--accent-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.about-highlight strong {
+    color: var(--text);
+    font-size: 34px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+
+/* Feature Section */
+
+.about-section {
+    margin-bottom: 75px;
+}
+
+.about-section .section-heading {
+    max-width: 700px;
+    margin-bottom: 28px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.feature-card {
+    min-height: 210px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    background: var(--surface-light);
+    border-color: var(--border-light);
+}
+
+.feature-number {
+    margin-bottom: 28px;
+    color: var(--accent-light);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.feature-card h3 {
+    margin-bottom: 9px;
+    color: var(--text);
+    font-size: 17px;
+}
+
+.feature-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* Technology */
+
+.technology-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.technology-card {
+    min-height: 105px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition:
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.technology-card:hover {
+    background: var(--surface-light);
+    border-color: var(--border-light);
+}
+
+.technology-card strong {
+    color: var(--text);
+    font-size: 15px;
+}
+
+.technology-card span {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+
+/* Callout */
+
+.about-callout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 32px;
+    background:
+        linear-gradient(
+            135deg,
+            var(--surface-light),
+            var(--surface)
+        );
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.about-callout > div {
+    max-width: 700px;
+}
+
+.about-callout h2 {
+    margin-bottom: 10px;
+    color: var(--text);
+    font-size: 27px;
+    line-height: 1.25;
+}
+
+.about-callout p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* Responsive */
+
+@media (max-width: 950px) {
+
+    .about-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .technology-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .about-container {
+        width: 92%;
+        padding-top: 40px;
+    }
+
+    .about-header {
+        margin-bottom: 45px;
+    }
+
+    .about-intro {
+        margin-bottom: 55px;
+    }
+
+    .about-intro-content,
+    .about-highlight,
+    .feature-card,
+    .about-callout {
+        padding: 20px;
+    }
+
+    .about-highlight {
+        min-height: 240px;
+    }
+
+    .about-highlight strong {
+        font-size: 30px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .technology-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-callout {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .about-callout .primary-button {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .about-intro-content h2 {
+        font-size: 25px;
+    }
+
+    .about-highlight strong {
+        font-size: 27px;
+    }
+
+}

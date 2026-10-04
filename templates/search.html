@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Message Search | ChatSync</title>
+
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/common.css') }}">
+
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/search.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        ChatSync
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/search" class="active">
+            Search
+        </a>
+
+        <a href="/upload">
+            New Analysis
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="page-container">
+
+
+    <div class="page-header">
+
+        <p class="eyebrow">
+            MESSAGE EXPLORER
+        </p>
+
+        <h1>
+            Search the conversation
+        </h1>
+
+        <p>
+            Find messages using keywords, participants, message type
+            and date ranges.
+        </p>
+
+        <span class="dashboard-file">
+            {{ filename }}
+        </span>
+
+    </div>
+
+
+    <!-- Search Form -->
+
+    <section class="dashboard-section">
+
+        <form
+            action="/search"
+            method="GET"
+            class="search-form"
+        >
+
+            <div class="search-main">
+
+                <label>
+                    Keyword
+                </label>
+
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ query }}"
+                    placeholder="Search messages..."
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Participant
+                </label>
+
+                <select name="participant">
+
+                    <option value="">
+                        All participants
+                    </option>
+
+                    {% for participant in participants %}
+
+                        <option
+                            value="{{ participant }}"
+                            {% if participant == selected_participant %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ participant }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Message Type
+                </label>
+
+                <select name="type">
+
+                    <option value="">
+                        All types
+                    </option>
+
+                    {% for message_type in message_types %}
+
+                        <option
+                            value="{{ message_type }}"
+                            {% if message_type == selected_type %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ message_type }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    From
+                </label>
+
+                <input
+                    type="date"
+                    name="start_date"
+                    value="{{ start_date }}"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    To
+                </label>
+
+                <input
+                    type="date"
+                    name="end_date"
+                    value="{{ end_date }}"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-button"
+            >
+                Search
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Results -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                RESULTS
+            </p>
+
+            <h2>
+                {{ "{:,}".format(total_results) }} messages found
+            </h2>
+
+            {% if total_results > 100 %}
+
+                <p>
+                    Showing the first 100 results.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        {% if results %}
+
+            <div class="message-results">
+
+                {% for result in results %}
+
+                    <article class="message-result">
+
+                        <div class="message-result-header">
+
+                            <strong>
+                                {{ result.sender }}
+                            </strong>
+
+                            <span>
+                                {{ result.date.strftime("%d %b %Y") }}
+                                ·
+                                {{ result.time }}
+                            </span>
+
+                        </div>
+
+
+                        <span class="message-type-badge">
+                            {{ result.type }}
+                        </span>
+
+
+                        <p>
+                            {{ result.message }}
+                        </p>
+
+                    </article>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-state-card">
+
+                <div>
+                    🔎
+                </div>
+
+                <h3>
+                    No messages found
+                </h3>
+
+                <p>
+                    Try another keyword or change your filters.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

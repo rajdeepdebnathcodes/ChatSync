@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ChatSync - Upload Chat</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/common.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/upload.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ChatSync
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/upload">New Analysis</a>
+            <a href="/about">About</a>
+        </div>
+
+    </nav>
+
+
+    <main class="upload-page">
+
+        <div class="upload-container">
+
+
+            <div class="upload-header">
+
+                <p class="eyebrow">
+                    NEW ANALYSIS
+                </p>
+
+                <h1>
+                    Upload your WhatsApp chat
+                </h1>
+
+                <p>
+                    Upload the original WhatsApp exported
+                    <strong>.txt</strong> file and ChatSync will
+                    analyze the conversation for you.
+                </p>
+
+            </div>
+
+
+            <div class="upload-card">
+
+                <form action="/upload"
+                      method="POST"
+                      enctype="multipart/form-data">
+
+
+                    <div class="file-drop-area">
+
+                        <div class="upload-icon">
+                            ↑
+                        </div>
+
+                        <h2>
+                            Choose your chat file
+                        </h2>
+
+                        <p>
+                            Select a WhatsApp exported .txt file
+                        </p>
+
+
+                        <label for="chat_file"
+                               class="file-label">
+                            Choose File
+                        </label>
+
+                        <input
+                            type="file"
+                            id="chat_file"
+                            name="chat_file"
+                            class="file-input"
+                            accept=".txt"
+                            required
+                        >
+
+
+                        <div id="selected-file"
+                             class="selected-file">
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="upload-button">
+                        Analyze Conversation
+                    </button>
+
+
+                    <p class="upload-info">
+                        Your original chat file is used for analysis
+                        and is not modified.
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        const fileInput =
+            document.getElementById("chat_file");
+
+        const selectedFile =
+            document.getElementById("selected-file");
+
+
+        fileInput.addEventListener("change", function () {
+
+            if (this.files.length > 0) {
+
+                selectedFile.textContent =
+                    "Selected: " + this.files[0].name;
+
+                selectedFile.style.display = "block";
+
+            } else {
+
+                selectedFile.textContent = "";
+                selectedFile.style.display = "none";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

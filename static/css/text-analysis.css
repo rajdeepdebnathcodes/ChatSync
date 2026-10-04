@@ -1,0 +1,403 @@
+/* =========================================================
+   ChatSync - Text Analysis
+   ========================================================= */
+
+
+/* PAGE */
+
+.text-analysis-container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+    padding: 50px 0 80px;
+}
+
+
+/* HEADER */
+
+.text-analysis-container .page-header {
+    margin-bottom: 40px;
+}
+
+.text-analysis-container .page-header > p:last-child {
+    max-width: 680px;
+    margin-top: 10px;
+
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   TEXT STATISTICS
+   ========================================================= */
+
+.text-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+
+    margin-bottom: 58px;
+}
+
+.text-stat-card {
+    min-height: 135px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 22px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.text-stat-card:hover {
+    transform: translateY(-3px);
+
+    background: var(--surface-light);
+    border-color: var(--border-light);
+}
+
+.text-stat-card > span {
+    color: var(--muted);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.text-stat-card strong {
+    margin-top: 15px;
+
+    color: var(--text);
+
+    font-size: 26px;
+    line-height: 1.2;
+
+    word-break: break-word;
+}
+
+.text-stat-card small {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.text-stat-card .sender-value {
+    font-size: 21px;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.text-analysis-section {
+    margin-bottom: 58px;
+}
+
+.text-analysis-section .section-heading {
+    margin-bottom: 22px;
+}
+
+.text-analysis-section .section-heading > p:last-child {
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   WORD ANALYSIS
+   ========================================================= */
+
+.word-analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.word-card {
+    min-width: 0;
+
+    padding: 24px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+
+/* WORD CARD HEADER */
+
+.word-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.word-card-header h3 {
+    color: var(--text);
+
+    font-size: 17px;
+}
+
+.word-card-header span {
+    padding: 5px 9px;
+
+    color: var(--accent-light);
+    background: var(--accent-soft);
+
+    border: 1px solid rgba(139, 108, 255, 0.18);
+    border-radius: 999px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   WORD LIST
+   ========================================================= */
+
+.word-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.word-row {
+    min-height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 9px 13px;
+
+    background: var(--surface-light);
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.word-row:hover {
+    background: var(--surface-hover);
+
+    border-color: var(--border);
+
+    transform: translateX(2px);
+}
+
+.word-name {
+    color: var(--text-soft);
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.word-count {
+    min-width: 48px;
+
+    color: var(--accent-light);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-align: right;
+}
+
+
+/* EMPTY WORD LIST */
+
+.empty-inline {
+    padding: 25px;
+
+    color: var(--muted);
+
+    text-align: center;
+
+    border: 1px dashed var(--border-light);
+    border-radius: var(--radius-md);
+}
+
+
+/* =========================================================
+   WORD CHART
+   ========================================================= */
+
+.word-chart {
+    width: 100%;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-radius: var(--radius-md);
+}
+
+.word-chart img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+
+/* =========================================================
+   LONGEST MESSAGE
+   ========================================================= */
+
+.longest-message-card {
+    padding: 25px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+
+/* MESSAGE META */
+
+.message-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.message-meta > div {
+    padding: 15px;
+
+    background: var(--surface-light);
+
+    border-radius: var(--radius-md);
+}
+
+.message-meta span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+.message-meta strong {
+    color: var(--text-soft);
+
+    font-size: 14px;
+
+    word-break: break-word;
+}
+
+
+/* MESSAGE CONTENT */
+
+.longest-message {
+    padding: 21px;
+
+    color: var(--text-soft);
+
+    background: var(--surface-light);
+
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-md);
+
+    font-size: 14px;
+    line-height: 1.8;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+    .text-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .word-analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .message-meta {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .text-analysis-container {
+        width: 92%;
+        padding-top: 40px;
+    }
+
+    .text-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .text-stat-card {
+        min-height: 110px;
+    }
+
+    .word-card,
+    .longest-message-card {
+        padding: 18px;
+    }
+
+    .word-card-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .word-card-header span {
+        align-self: flex-start;
+    }
+
+}

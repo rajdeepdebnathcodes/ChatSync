@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ChatSync - Text Analysis</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/common.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/text-analysis.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        ChatSync
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/upload">New Analysis</a>
+        <a href="/about">About</a>
+    </div>
+
+</nav>
+
+
+<main class="text-analysis-container">
+
+    <!-- PAGE HEADER -->
+
+    <header class="page-header">
+
+        <p class="eyebrow">
+            TEXT ANALYSIS
+        </p>
+
+        <h1>
+            Explore the language of your chat.
+        </h1>
+
+        <p>
+            Analyze word usage, message lengths and frequently
+            used terms throughout the conversation.
+        </p>
+
+    </header>
+
+
+    {% if text_stats %}
+
+
+    <!-- TEXT STATISTICS -->
+
+    <section class="text-stats-grid">
+
+        <div class="text-stat-card">
+
+            <span>
+                Total Words
+            </span>
+
+            <strong>
+                {{ "{:,}".format(text_stats.total_words) }}
+            </strong>
+
+        </div>
+
+
+        <div class="text-stat-card">
+
+            <span>
+                Average Words / Message
+            </span>
+
+            <strong>
+                {{ "%.1f"|format(text_stats.average_words_per_message) }}
+            </strong>
+
+        </div>
+
+
+        <div class="text-stat-card">
+
+            <span>
+                Longest Message
+            </span>
+
+            <strong>
+                {{ "{:,}".format(text_stats.longest_message_length) }}
+            </strong>
+
+            <small>
+                characters
+            </small>
+
+        </div>
+
+
+        <div class="text-stat-card">
+
+            <span>
+                Longest Message By
+            </span>
+
+            <strong class="sender-value">
+                {{ text_stats.longest_message_sender }}
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- WORD FREQUENCY -->
+
+    <section class="text-analysis-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                WORD FREQUENCY
+            </p>
+
+            <h2>
+                Most Used Words
+            </h2>
+
+            <p>
+                The most frequently used meaningful words in the conversation.
+            </p>
+
+        </div>
+
+
+        <div class="word-analysis-grid">
+
+
+            <!-- WORD LIST -->
+
+            <div class="word-card">
+
+                <div class="word-card-header">
+
+                    <h3>
+                        Top Words
+                    </h3>
+
+                    <span>
+                        Top {{ top_words|length }}
+                    </span>
+
+                </div>
+
+
+                <div class="word-list">
+
+                    {% if top_words %}
+
+                        {% for word, count in top_words %}
+
+                        <div class="word-row">
+
+                            <span class="word-name">
+                                {{ word }}
+                            </span>
+
+                            <span class="word-count">
+                                {{ "{:,}".format(count) }}
+                            </span>
+
+                        </div>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <div class="empty-inline">
+                            No word frequency data available.
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- WORD CHART -->
+
+            <div class="word-card">
+
+                <div class="word-card-header">
+
+                    <h3>
+                        Word Frequency Chart
+                    </h3>
+
+                    <span>
+                        Visual Analysis
+                    </span>
+
+                </div>
+
+
+                <div class="word-chart">
+
+                    <img
+                        src="{{ url_for('charts', filename='top_words.png') }}"
+                        alt="Most frequently used words"
+                    >
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- LONGEST MESSAGE -->
+
+    <section class="text-analysis-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                LONGEST MESSAGE
+            </p>
+
+            <h2>
+                Longest Message
+            </h2>
+
+            <p>
+                The longest text message found in the conversation.
+            </p>
+
+        </div>
+
+
+        <div class="longest-message-card">
+
+            <div class="message-meta">
+
+                <div>
+                    <span>
+                        Sent By
+                    </span>
+
+                    <strong>
+                        {{ text_stats.longest_message_sender }}
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>
+                        Date
+                    </span>
+
+                    <strong>
+                        {% if text_stats.longest_message_date %}
+                            {{ text_stats.longest_message_date.strftime("%d %b %Y") }}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>
+                        Length
+                    </span>
+
+                    <strong>
+                        {{ "{:,}".format(text_stats.longest_message_length) }}
+                        characters
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="longest-message">
+
+                {{ text_stats.longest_message }}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {% else %}
+
+
+    <!-- EMPTY STATE -->
+
+    <div class="empty-state">
+
+        <h3>
+            No text analysis available
+        </h3>
+
+        <p>
+            Upload a WhatsApp chat to generate text analytics.
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+</main>
+
+</body>
+</html>

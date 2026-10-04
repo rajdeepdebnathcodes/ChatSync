@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Link Explorer | ChatSync</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/common.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/link-explorer.css') }}"
+    >
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        ChatSync
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/link-explorer">
+            Link Explorer
+        </a>
+
+        <a href="/search">
+            Search
+        </a>
+
+        <a href="/upload">
+            New Analysis
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="link-container">
+
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+        <p class="eyebrow">
+            LINK ANALYSIS
+        </p>
+
+        <h1>
+            Link Explorer
+        </h1>
+
+        <p>
+            Explore websites and links shared throughout the conversation.
+        </p>
+
+        <span class="dashboard-file">
+            {{ filename }}
+        </span>
+
+    </header>
+
+
+    <!-- STATS -->
+
+    <section class="link-stats-grid">
+
+        <div class="link-stat-card">
+
+            <span>
+                Total Links
+            </span>
+
+            <strong>
+                {{ "{:,}".format(total_links) }}
+            </strong>
+
+        </div>
+
+
+        <div class="link-stat-card">
+
+            <span>
+                Domains
+            </span>
+
+            <strong>
+                {{ domains|length }}
+            </strong>
+
+        </div>
+
+
+        <div class="link-stat-card">
+
+            <span>
+                Top Domain
+            </span>
+
+            <strong class="top-domain">
+
+                {% if domains %}
+                    {{ domains[0][0] }}
+                {% else %}
+                    —
+                {% endif %}
+
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- DOMAINS -->
+
+    <section class="link-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                POPULAR WEBSITES
+            </p>
+
+            <h2>
+                Most Shared Domains
+            </h2>
+
+            <p>
+                Websites and domains shared most frequently in the chat.
+            </p>
+
+        </div>
+
+
+        <div class="data-table-wrapper">
+
+            <table class="data-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Domain</th>
+                        <th>Shares</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for domain, count in domains %}
+
+                    <tr>
+
+                        <td class="domain-name">
+                            {{ domain }}
+                        </td>
+
+                        <td class="domain-count">
+                            {{ "{:,}".format(count) }}
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="2" class="table-empty">
+                            No domains found.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- LINKS -->
+
+    <section class="link-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                SHARED LINKS
+            </p>
+
+            <h2>
+                Recent Links
+            </h2>
+
+            <p>
+                Showing up to 500 links from the conversation.
+            </p>
+
+        </div>
+
+
+        <div class="link-results">
+
+            {% for link in links %}
+
+            <article class="link-result">
+
+                <div class="link-result-header">
+
+                    <strong>
+                        {{ link.sender }}
+                    </strong>
+
+                    <span>
+                        {{ link.date.strftime("%d %b %Y") }}
+                        ·
+                        {{ link.time }}
+                    </span>
+
+                </div>
+
+
+                <span class="domain-badge">
+                    {{ link.domain }}
+                </span>
+
+
+                <p class="link-url">
+                    {{ link.url }}
+                </p>
+
+            </article>
+
+            {% else %}
+
+            <div class="empty-state">
+
+                <h3>
+                    No links found
+                </h3>
+
+                <p>
+                    No shared links are available in this conversation.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

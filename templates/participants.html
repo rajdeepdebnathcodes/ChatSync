@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ChatSync - Participants</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/common.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/participants.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        ChatSync
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/upload">
+            New Analysis
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="page-container">
+
+
+    <header class="page-header">
+
+        <p class="eyebrow">
+            PARTICIPANT ANALYSIS
+        </p>
+
+        <h1>
+            Who talks the most?
+        </h1>
+
+        <p>
+            Explore message activity, word usage and contribution
+            across participants in the conversation.
+        </p>
+
+    </header>
+
+
+    {% if participant_names %}
+
+
+    <section class="participants-summary">
+
+        <div class="card summary-card">
+
+            <span>
+                Participants
+            </span>
+
+            <strong>
+                {{ participant_names|length }}
+            </strong>
+
+        </div>
+
+
+        <div class="card summary-card">
+
+            <span>
+                Total Messages
+            </span>
+
+            <strong>
+                {{ "{:,}".format(total_messages) }}
+            </strong>
+
+        </div>
+
+
+        <div class="card summary-card">
+
+            <span>
+                Most Active
+            </span>
+
+            <strong>
+                {{ most_active }}
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <section class="participants-grid">
+
+
+        {% for participant_name in participant_names %}
+
+        {% set participant = statistics[participant_name] %}
+
+
+        <article class="participant-card card">
+
+
+            <div class="participant-card-header">
+
+                <div>
+
+                    <p class="participant-label">
+                        PARTICIPANT
+                    </p>
+
+                    <h2 class="participant-name">
+                        {{ participant_name }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="participant-stats">
+
+
+                <div class="participant-stat">
+
+                    <span>
+                        Messages
+                    </span>
+
+                    <strong>
+                        {{ "{:,}".format(participant["messages"]) }}
+                    </strong>
+
+                </div>
+
+
+                <div class="participant-stat">
+
+                    <span>
+                        Words
+                    </span>
+
+                    <strong>
+                        {{ "{:,}".format(participant["words"]) }}
+                    </strong>
+
+                </div>
+
+
+                <div class="participant-stat">
+
+                    <span>
+                        Contribution
+                    </span>
+
+                    <strong>
+                        {{ "%.1f"|format(participant["message_percentage"]) }}%
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="participant-percentage">
+
+
+                <div class="participant-percentage-header">
+
+                    <span>
+                        Message Contribution
+                    </span>
+
+                    <span>
+                        {{ "%.1f"|format(participant["message_percentage"]) }}%
+                    </span>
+
+                </div>
+
+
+                <div class="participant-progress">
+
+                    <div
+                        class="participant-progress-bar"
+                        style="width: {{ participant['message_percentage'] }}%;"
+                    ></div>
+
+                </div>
+
+
+            </div>
+
+
+        </article>
+
+
+        {% endfor %}
+
+
+    </section>
+
+
+    {% else %}
+
+
+    <div class="empty-state">
+
+        <h3>
+            No participant data available
+        </h3>
+
+        <p>
+            Upload a WhatsApp chat to generate participant analytics.
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+
+</main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+/* ================================
+   PARTICIPANTS PAGE
+================================ */
+
+.participants-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 34px;
+}
+
+.summary-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.summary-card span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.summary-card strong {
+    color: var(--text);
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.participants-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.participant-card {
+    padding: 26px;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.participant-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-light);
+    background: var(--surface-light);
+}
+
+.participant-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.participant-label {
+    margin-bottom: 6px;
+    color: var(--accent-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.participant-name {
+    color: var(--text);
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.participant-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 26px;
+}
+
+.participant-stat {
+    padding: 16px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.participant-stat span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.participant-stat strong {
+    display: block;
+    color: var(--text);
+    font-size: 18px;
+}
+
+.participant-percentage {
+    margin-top: 4px;
+}
+
+.participant-percentage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.participant-percentage-header span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.participant-percentage-header span:last-child {
+    color: var(--text-soft);
+    font-weight: 600;
+}
+
+.participant-progress {
+    width: 100%;
+    height: 7px;
+    overflow: hidden;
+    background: var(--bg-soft);
+    border-radius: 999px;
+}
+
+.participant-progress-bar {
+    height: 100%;
+    min-width: 2px;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.5s ease;
+}
+
+@media (max-width: 850px) {
+    .participants-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .participants-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .participant-card {
+        padding: 20px;
+    }
+
+    .participant-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .participant-name {
+        font-size: 21px;
+    }
+}

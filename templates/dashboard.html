@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ChatSync Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/common.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        ChatSync
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/search">
+            Search
+        </a>
+
+        <a href="/upload">
+            New Analysis
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="dashboard-container">
+
+
+    <!-- HEADER -->
+
+    <header class="dashboard-header">
+
+        <div>
+
+            <p class="eyebrow">
+                CONVERSATION ANALYTICS
+            </p>
+
+            <h1>
+                Chat Dashboard
+            </h1>
+
+            <p class="dashboard-description">
+                A visual overview of activity, participants,
+                content and conversation patterns.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-file-card">
+
+            <span>
+                ANALYZING
+            </span>
+
+            <strong>
+                {{ filename }}
+            </strong>
+
+        </div>
+
+    </header>
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <span class="stat-label">
+                Human Messages
+            </span>
+
+            <strong>
+                {{ "{:,}".format(overview.human_messages) }}
+            </strong>
+
+            <small>
+                Conversation activity
+            </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-label">
+                Participants
+            </span>
+
+            <strong>
+                {{ overview.participants }}
+            </strong>
+
+            <small>
+                Active participants
+            </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-label">
+                Total Words
+            </span>
+
+            <strong>
+                {{ "{:,}".format(overview.total_words) }}
+            </strong>
+
+            <small>
+                Text content
+            </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-label">
+                Media
+            </span>
+
+            <strong>
+                {{ "{:,}".format(overview.media_count) }}
+            </strong>
+
+            <small>
+                Media messages
+            </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-label">
+                Links
+            </span>
+
+            <strong>
+                {{ "{:,}".format(overview.link_count) }}
+            </strong>
+
+            <small>
+                Shared links
+            </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span class="stat-label">
+                Meta AI
+            </span>
+
+            <strong>
+                {{ overview.ai_messages }}
+            </strong>
+
+            <small>
+                AI messages
+            </small>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- EXPLORATION -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                EXPLORE
+            </p>
+
+            <h2>
+                Explore your conversation
+            </h2>
+
+            <p>
+                Go deeper into specific parts of the conversation.
+            </p>
+
+        </div>
+
+
+        <div class="quick-links">
+
+
+            <a
+                href="/participants"
+                class="quick-link"
+            >
+
+                <div>
+
+                    <strong>
+                        Participants
+                    </strong>
+
+                    <span>
+                        Compare activity
+                    </span>
+
+                </div>
+
+                <span class="quick-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="/activity"
+                class="quick-link"
+            >
+
+                <div>
+
+                    <strong>
+                        Activity
+                    </strong>
+
+                    <span>
+                        Find busy periods
+                    </span>
+
+                </div>
+
+                <span class="quick-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="/text-analysis"
+                class="quick-link"
+            >
+
+                <div>
+
+                    <strong>
+                        Text Analysis
+                    </strong>
+
+                    <span>
+                        Explore word usage
+                    </span>
+
+                </div>
+
+                <span class="quick-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="/search"
+                class="quick-link"
+            >
+
+                <div>
+
+                    <strong>
+                        Message Search
+                    </strong>
+
+                    <span>
+                        Find specific messages
+                    </span>
+
+                </div>
+
+                <span class="quick-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="/emoji-explorer"
+                class="quick-link"
+            >
+
+                <div>
+
+                    <strong>
+                        Emoji Explorer
+                    </strong>
+
+                    <span>
+                        Analyze emoji usage
+                    </span>
+
+                </div>
+
+                <span class="quick-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="/link-explorer"
+                class="quick-link"
+            >
+
+                <div>
+
+                    <strong>
+                        Link Explorer
+                    </strong>
+
+                    <span>
+                        Explore shared websites
+                    </span>
+
+                </div>
+
+                <span class="quick-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="/media-explorer"
+                class="quick-link"
+            >
+
+                <div>
+
+                    <strong>
+                        Media Explorer
+                    </strong>
+
+                    <span>
+                        Explore media messages
+                    </span>
+
+                </div>
+
+                <span class="quick-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a
+                href="/upload"
+                class="quick-link quick-link-primary"
+            >
+
+                <div>
+
+                    <strong>
+                        New Analysis
+                    </strong>
+
+                    <span>
+                        Analyze another chat
+                    </span>
+
+                </div>
+
+                <span class="quick-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- TIMELINE -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                CHAT PERIOD
+            </p>
+
+            <h2>
+                Conversation Timeline
+            </h2>
+
+            <p>
+                The period covered by this exported conversation.
+            </p>
+
+        </div>
+
+
+        <div class="timeline-card">
+
+
+            <div class="timeline-point">
+
+                <span>
+                    START DATE
+                </span>
+
+                <strong>
+                    {{ overview.start_date.strftime("%d %b %Y") }}
+                </strong>
+
+            </div>
+
+
+            <div class="timeline-line">
+
+                <span>
+                    CONVERSATION PERIOD
+                </span>
+
+                <div>
+                    <i></i>
+                    <i></i>
+                </div>
+
+            </div>
+
+
+            <div class="timeline-point timeline-end">
+
+                <span>
+                    END DATE
+                </span>
+
+                <strong>
+                    {{ overview.end_date.strftime("%d %b %Y") }}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+</body>
+
+</html>
